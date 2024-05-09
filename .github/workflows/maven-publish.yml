@@ -2,8 +2,8 @@ name: Java CI Build and Test
 
 on:
   push:
-    branches: [ main ]  # Ensures the workflow runs on push events to the main branch.
-  workflow_dispatch:  # Allows the workflow to be run manually from the GitHub web interface.
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build_and_test:
@@ -22,9 +22,12 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Run tests
-      run: mvn test
+      run: mvn test -e
+    - name: List contents of the target directory
+      run: ls -lR target/
 
     - name: Upload Surefire Reports
+      if: always()  # This ensures the step runs even if previous steps fail
       uses: actions/upload-artifact@v2
       with:
         name: surefire-reports
