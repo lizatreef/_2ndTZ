@@ -102,7 +102,6 @@ public class NumberProcessorTest {
         }
 
         if (!GraphicsEnvironment.isHeadless()) {
-            // Create and display the chart only if not in a headless environment
             XYChart chart = new XYChartBuilder().width(800).height(600).title("Execution Time Analysis").xAxisTitle("Number of Elements").yAxisTitle("Time (ms)").build();
             chart.addSeries("Execution time", sizeList, times).setMarker(SeriesMarkers.CIRCLE);
             new SwingWrapper(chart).displayChart();
