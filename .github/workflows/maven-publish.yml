@@ -2,7 +2,7 @@ name: Java CI Build and Test
 
 on:
   push:
-    branches: [ test ]  # Ensures the workflow runs on push events to the main branch.
+    branches: [ main ]  # Ensures the workflow runs on push events to the main branch.
   workflow_dispatch:  # Allows the workflow to be run manually from the GitHub web interface.
 
 jobs:
