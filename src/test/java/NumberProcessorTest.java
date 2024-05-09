@@ -18,7 +18,7 @@ public class NumberProcessorTest {
 
     @BeforeEach
     public void setUp() throws FileNotFoundException {
-        numbers = NumberProcessor.readNumbersFromFile("_2ndTZ/New");
+        numbers = NumberProcessor.readNumbersFromFile("src/test/resources/New");
     }
 
     @Test
@@ -71,7 +71,7 @@ public class NumberProcessorTest {
     @Test
     public void testEmptyFile() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            int[] numbers = NumberProcessor.readNumbersFromFile("_2ndTZ/Empty");
+            int[] numbers = NumberProcessor.readNumbersFromFile("src/test/resources/Empty");
             NumberProcessor.findMin(numbers);
         });
 
