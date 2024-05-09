@@ -23,3 +23,9 @@ jobs:
 
     - name: Run tests
       run: mvn test
+
+    - name: Upload Surefire Reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: surefire-reports
+        path: target/surefire-reports
