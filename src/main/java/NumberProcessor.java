@@ -7,9 +7,15 @@ public class NumberProcessor {
     public static int[] readNumbersFromFile(String filename) throws FileNotFoundException {
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
+        if (!scanner.hasNextLine()) {
+            scanner.close();
+            throw new IllegalArgumentException("No numbers to process");
+        }
         String input = scanner.nextLine();
         scanner.close();
-
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("No numbers to process");
+        }
         String[] numbersStr = input.split(" ");
         int[] numbers = new int[numbersStr.length];
         for (int i = 0; i < numbersStr.length; i++) {
