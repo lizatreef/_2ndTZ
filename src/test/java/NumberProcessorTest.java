@@ -79,36 +79,34 @@ public class NumberProcessorTest {
     }
 
     //5th point
-    @Test
-    public void testPerformanceAndPlot() {
-        int[] sizes = {1000, 10000, 100000, 500000, 1000000};
-        List<Double> times = new ArrayList<>();
-        List<Integer> sizeList = new ArrayList<>();
-        Random random = new Random();
+ @Test
+public void testPerformanceAndPlot() {
+    int[] sizes = {1000, 10000, 100000, 500000, 1000000};
+    List<Double> times = new ArrayList<>();
+    List<Integer> sizeList = new ArrayList<>();
+    Random random = new Random();
 
-        for (int size : sizes) {
-            int[] testData = new int[size];
-            for (int i = 0; i < size; i++) {
-                testData[i] = random.nextInt(100000);
-            }
-
-            long startTime = System.currentTimeMillis();
-            NumberProcessor.findMin(testData);
-            long endTime = System.currentTimeMillis();
-
-            long duration = endTime - startTime;
-            times.add((double) duration);
-            sizeList.add(size);
-
-            System.out.println("Processing time for " + size + " elements: " + duration + " ms");
+    for (int size : sizes) {
+        int[] testData = new int[size];
+        for (int i = 0; i < size; i++) {
+            testData[i] = random.nextInt(100000);
         }
 
-        // Create Chart
+        long startTime = System.currentTimeMillis();
+        NumberProcessor.findMin(testData);
+        long endTime = System.currentTimeMillis();
+
+        long duration = endTime - startTime;
+        times.add((double) duration);
+        sizeList.add(size);
+    }
+
+    if (!GraphicsEnvironment.isHeadless()) {
+        // Create and display the chart only if not in a headless environment
         XYChart chart = new XYChartBuilder().width(800).height(600).title("Execution Time Analysis").xAxisTitle("Number of Elements").yAxisTitle("Time (ms)").build();
         chart.addSeries("Execution time", sizeList, times).setMarker(SeriesMarkers.CIRCLE);
-
-        // Show it
         new SwingWrapper(chart).displayChart();
     }
+}
 }
 
